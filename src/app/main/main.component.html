@@ -1,0 +1,40 @@
+<h1>Search Rav-kav service Stations Nearby</h1>
+<input type="checkbox" [checked]="state.checkbox_list.accepts_cedit_card"
+    (change)="state.checkbox_list.accepts_cedit_card = !state.checkbox_list.accepts_cedit_card">
+<label>Accepts Cedit Card</label>
+<br>
+<input type="checkbox" [checked]="state.checkbox_list.accepts_cash"
+    (change)="state.checkbox_list.accepts_cash = !state.checkbox_list.accepts_cash">
+<label>Accepts Cash</label>
+<br>
+<input type="checkbox" [checked]="state.checkbox_list.ravkav_services"
+    (change)="state.checkbox_list.ravkav_services = !state.checkbox_list.ravkav_services">
+<label>Ravkav Services</label>
+<br>
+<input type="checkbox" [checked]="state.checkbox_list.sells_rvakav_reader"
+    (change)="state.checkbox_list.sells_rvakav_reader = !state.checkbox_list.sells_rvakav_reader">
+<label>Sells Rvakav Reader</label>
+<br>
+<input type="checkbox" [checked]="state.checkbox_list.manned"
+    (change)="state.checkbox_list.manned = !state.checkbox_list.manned">
+<label>Manned</label>
+<br>
+<input type="checkbox" [checked]="state.checkbox_list.reload_reservation"
+    (change)="state.checkbox_list.reload_reservation = !state.checkbox_list.reload_reservation">
+<label>Reload Reservation</label>
+<br>
+<br>
+<button (click)="getStationsList()">Search !</button>
+<br>
+<hr>
+<br>
+<div *ngIf="state.stations_list.length">
+    <h2>{{ state.stations_list.length }} Resalts:</h2>
+    <div *ngFor="let x of state.stations_list; let i = index">
+        <h3>{{ i + 1 }}. {{ x.service_station.comments ? x.service_station.comments : "name not provided" }}</h3>
+        <p>{{ x.service_station.address ? x.service_station.address : "adress no provided" }}, {{ x.service_station.city
+            }}</p>
+        <p>{{x.activity_hours ? x.activity_hours : "activity hours not provided..."}}</p>
+        <hr>
+    </div>
+</div>
