@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
 
+## Some info
+
+This web application requests a list of nearby service stations based on your location and other parameters from Rav-Kav API and displays it on maps from OpenStreetMap.
+
+## Technologies used
+
+Angular, NodeJs, Express, OpenStreetMap, Bootstrap.
+
 ## Link for this application
 
 https://ravkav-service-stations.herokuapp.com
