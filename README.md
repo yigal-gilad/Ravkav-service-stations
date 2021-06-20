@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Link for this application
 
-(https://ravkav-service-stations.herokuapp.com)
+https://ravkav-service-stations.herokuapp.com
 
 ## Development server
 
