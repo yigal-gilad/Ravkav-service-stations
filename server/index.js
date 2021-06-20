@@ -29,27 +29,11 @@ app.use(helmet())
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.static(__dirname + '/dist/app'));
+app.use(express.static(__dirname + '/assets/img'));
 
-// get rav-kav nearby stations
-app.get('/getstations', async (req, res) => {
-  fetch(req.query.url + "&lat=" + req.query.lat +
-  "&lon=" + req.query.lon,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      method: 'GET',
-      mode: 'no-cors'
-    })
-    .then(response => response.json().then(data => {
-      console.log(req.query.url)
-      return res.status(200).send(data);
-    }))
-    .then(data => {
-      console.log(req.query.url)
-    })
-});
+// use routes
+const getStations = require('./routes/getAndSendStations');
+app.use(getStations);
 
 // start server
 server.listen(port, () => {

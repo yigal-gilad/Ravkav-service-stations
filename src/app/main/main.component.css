@@ -1,0 +1,7 @@
+.btn-group.special {
+  display: flex;
+}
+
+.special .btn {
+  flex: 1
+}

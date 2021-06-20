@@ -10,6 +10,7 @@ export const INTIAL_STATE: state = {
     reload_reservation: false
   },
   stations_list: [],
+  selected_station: null,
   user_latitude: null,
   user_longitude: null
 }

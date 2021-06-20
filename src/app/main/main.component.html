@@ -1,40 +1,111 @@
-<h1>Search Rav-kav service Stations Nearby</h1>
-<input type="checkbox" [checked]="state.checkbox_list.accepts_cedit_card"
-    (change)="state.checkbox_list.accepts_cedit_card = !state.checkbox_list.accepts_cedit_card">
-<label>Accepts Cedit Card</label>
+<h6>Search For Rav-kav service Stations Nearby</h6>
+<div class="btn-group special" role="group" aria-label="...">
+    <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Set parameters
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+        <a class="dropdown-item">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input"
+                        [checked]="state.state.checkbox_list.accepts_cedit_card"
+                        (change)="state.state.checkbox_list.accepts_cedit_card = !state.state.checkbox_list.accepts_cedit_card">
+                    Accepts Cedit Card
+                </label>
+            </div>
+        </a>
+        <a class="dropdown-item">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" [checked]="state.state.checkbox_list.accepts_cash"
+                        (change)="state.state.checkbox_list.accepts_cash = !state.state.checkbox_list.accepts_cash">
+                    Accepts Cash
+                </label>
+            </div>
+        </a>
+        <a class="dropdown-item">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input"
+                        [checked]="state.state.checkbox_list.ravkav_services"
+                        (change)="state.state.checkbox_list.ravkav_services = !state.state.checkbox_list.ravkav_services">
+                    Ravkav Services
+                </label>
+            </div>
+        </a>
+        <a class="dropdown-item">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input"
+                        [checked]="state.state.checkbox_list.sells_rvakav_reader"
+                        (change)="state.state.checkbox_list.sells_rvakav_reader = !state.state.checkbox_list.sells_rvakav_reader">
+                    Sells Rvakav Reader
+                </label>
+            </div>
+        </a>
+        <a class="dropdown-item">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" [checked]="state.state.checkbox_list.manned"
+                        (change)="state.state.checkbox_list.manned = !state.state.checkbox_list.manned">
+                    Manned
+                </label>
+            </div>
+        </a>
+        <a class="dropdown-item">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input"
+                        [checked]="state.state.checkbox_list.reload_reservation"
+                        (change)="state.state.checkbox_list.reload_reservation = !state.state.checkbox_list.reload_reservation">
+                    Reload Reservation
+                </label>
+            </div>
+        </a>
+    </div>
+    <button type="button" class="btn btn-dark" (click)="getStationsList()" [disabled]="!state.state.user_longitude"><i
+            class="fas fa-search"></i> Search</button>
+</div>
+<h5 *ngIf="!state.state.user_longitude" style="color: red;">Unable to get your location.
+    <span style="color: blue; text-decoration: underline;" (click)="loadInitMap()">Try again?</span>
+</h5>
 <br>
-<input type="checkbox" [checked]="state.checkbox_list.accepts_cash"
-    (change)="state.checkbox_list.accepts_cash = !state.checkbox_list.accepts_cash">
-<label>Accepts Cash</label>
-<br>
-<input type="checkbox" [checked]="state.checkbox_list.ravkav_services"
-    (change)="state.checkbox_list.ravkav_services = !state.checkbox_list.ravkav_services">
-<label>Ravkav Services</label>
-<br>
-<input type="checkbox" [checked]="state.checkbox_list.sells_rvakav_reader"
-    (change)="state.checkbox_list.sells_rvakav_reader = !state.checkbox_list.sells_rvakav_reader">
-<label>Sells Rvakav Reader</label>
-<br>
-<input type="checkbox" [checked]="state.checkbox_list.manned"
-    (change)="state.checkbox_list.manned = !state.checkbox_list.manned">
-<label>Manned</label>
-<br>
-<input type="checkbox" [checked]="state.checkbox_list.reload_reservation"
-    (change)="state.checkbox_list.reload_reservation = !state.checkbox_list.reload_reservation">
-<label>Reload Reservation</label>
-<br>
-<br>
-<button (click)="getStationsList()">Search !</button>
-<br>
-<hr>
-<br>
-<div *ngIf="state.stations_list.length">
-    <h2>{{ state.stations_list.length }} Resalts:</h2>
-    <div *ngFor="let x of state.stations_list; let i = index">
-        <h3>{{ i + 1 }}. {{ x.service_station.comments ? x.service_station.comments : "name not provided" }}</h3>
-        <p>{{ x.service_station.address ? x.service_station.address : "adress no provided" }}, {{ x.service_station.city
-            }}</p>
-        <p>{{x.activity_hours ? x.activity_hours : "activity hours not provided..."}}</p>
-        <hr>
+<div class="row">
+    <div class="col-lg-8">
+        <div id="map" class="map"></div>
+        <br>
+    </div>
+    <div class="col-lg-4" *ngIf="!state.state.stations_list.length">
+        <div class="jumbotron">
+            <h1>What Is this?</h1>
+            <p>This web application requests a list of nearby service stations based on your location and other
+                parameters from Rav-Kav API
+                and displays it on maps from OpenStreetMap.</p>
+            <h6><i class="fab fa-github"></i> View source Code<a
+                    href="https://github.com/yigaltheboss/Ravkav-service-stations"> Here</a>.</h6>
+            <h6><i class="fab fa-linkedin"></i> Follow The Creator<a
+                    href="https://www.linkedin.com/in/yigal-gilad-2504831a9/"> Here</a>.</h6>
+        </div>
+    </div>
+</div>
+<div *ngIf="state.state.stations_list.length">
+    <h2>{{ state.state.stations_list.length }} Resalts:</h2>
+    <div *ngFor="let x of state.state.stations_list; let i = index">
+        <div class="card">
+            <div class="card-header">{{ x.service_station.comments ? x.service_station.comments : "name not provided" }}
+            </div>
+            <div class="card-body">
+                <p>
+                    {{ x.service_station.address ?
+                    x.service_station.address : "Adress not provided" }},
+                    {{ x.service_station.city ? x.service_station.city :
+                    "City not provided"}}
+                </p>
+                <button class="btn btn-outline-dark float-right" (click)="selectStation(i)"><i
+                        class="fas fa-map-marked-alt"></i> View Details</button>
+            </div>
+        </div>
+        <br>
     </div>
 </div>

@@ -7,15 +7,7 @@ const envData = {
     node_env: process.env.NODE_ENV,
     ddos_burst: process.env.DDOS_BURST,
     ddos_limit: process.env.DDOS_LIMIT,
+    rav_kav_url: process.env.RAV_KAV_URL
 }
-
-
-
-// const envData = {
-//     port: 3000,
-//     node_env: "test",
-//     ddos_burst: 10,
-//     ddos_limit: 15,
-// }
 
 module.exports = envData;

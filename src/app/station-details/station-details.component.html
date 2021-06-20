@@ -1,0 +1,41 @@
+<button type="button" class="btn btn-dark" [routerLink]="'/main'" skipLocationChange>
+    <i class="fas fa-arrow-circle-left"></i> Go Back</button>
+<br>
+<br>
+<h5>Details for {{state.state.selected_station.service_station.comments ?
+    state.state.selected_station.service_station.comments : "name not provided"}}
+    service station</h5>
+<div class="row">
+    <div class="col-lg-8">
+        <div id="map" class="map"></div>
+        <br>
+    </div>
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <h5><span style="font-weight: bold;">City: </span>{{ state.state.selected_station.service_station.city ?
+                    state.state.selected_station.service_station.city :
+                    "not provided"}}</h5>
+                <h5><span style="font-weight: bold;">Adress: </span>{{
+                    state.state.selected_station.service_station.address ?
+                    state.state.selected_station.service_station.address :
+                    "not provided"}}</h5>
+                <h5><span style="font-weight: bold;">Company: </span>{{
+                    state.state.selected_station.service_station.operating_company ?
+                    state.state.selected_station.service_station.operating_company :
+                    "Unknown"}}</h5>
+                <h5><span style="font-weight: bold;">Activity hours: </span>{{
+                    state.state.selected_station.service_station.activity_hours ?
+                    state.state.selected_station.service_station.activity_hours :
+                    "not provided"}}</h5>
+                <br>
+                <div *ngIf="state.state.selected_station.service_station.attributes.length">
+                    <h5 style="color: green;"
+                        *ngFor="let x of state.state.selected_station.service_station.attributes; let i = index">
+                        <i class="fas fa-check-circle"></i> {{ x.split('_').join(' ') }}
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
